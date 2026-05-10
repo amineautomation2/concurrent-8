@@ -1,8 +1,8 @@
 import openpyxl
-from utils import clean_spreadsheet, fetch_with_backoff, get_xlsx_filepath
+from utils import clean_spreadsheet, fetch_with_backoff, get_random_user_agent, get_xlsx_filepath
 
 
-def standard_life_runner(h: dict) -> None:
+def standard_life_runner() -> None:
     out_xlsx = get_xlsx_filepath("standard_life.xlsx")
     clean_spreadsheet(out_xlsx)
 
@@ -17,7 +17,7 @@ def standard_life_runner(h: dict) -> None:
         "Pragma": "no-cache",
         "Upgrade-Insecure-Requests": "1",
     }
-    headers.update(h)
+    headers.update(get_random_user_agent())
 
     payload = {
         "_": 1641154486267
